@@ -1,0 +1,1 @@
+https://electionanalysisapp-cczjzslmufwtbgxfw37scr.streamlit.app/Party_Alliance
