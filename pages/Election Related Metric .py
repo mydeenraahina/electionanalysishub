@@ -237,9 +237,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         st.markdown("🎯 Total Eligible Voters Tamilnadu 2021", unsafe_allow_html=True)
         button1 = st.button("Click to View", key="button1", type="primary")
 
-        st.markdown("🎯 Election Turnout Over 234 Constituencies", unsafe_allow_html=True)
-        button3 = st.button("Click to View", key="button3", type="primary")
-
+        
         st.markdown("🎯 Gender Gap in Different Castes in Voter Turnout", unsafe_allow_html=True)
         button5 = st.button("Click to View", key="button5", type="primary")
 
@@ -404,38 +402,6 @@ def poll_percentage():
         st.write(fig)
 # Assuming your dataset is stored in a variable named 'dataset4_cleaned'
 # Get the unique index values
-if button3:
-    unique_districts = dataset4_cleaned.index.unique().tolist()
-    st.markdown("<h1 style='color: gray';>Election Turnout Over 234 Constituencies Tamilnadu 2021</h1>", unsafe_allow_html=True)
-    st.write("This tool allows you to analyze election turnout data Over 234 Constituencies. Please select one or more districts/Constituence from the dropdown menu below:")
-    # Multi-select box for district selection
-    selected_districts = st.multiselect('Select District(s)', unique_districts)
-
-    # Function to calculate and display district-wise turnout
-    def district_wise_turnout(district):
-        total_general = dataset4_cleaned.loc[district]["GENERAL"].sum()
-        total_postal = dataset4_cleaned.loc[district]["POSTAL"].sum()
-        total_votes = dataset4_cleaned.loc[district]["TOTAL"].sum()
-        total_voters = dataset4_cleaned.loc[district]["TOTAL ELECTORS"].sum()
-        
-        # Creating a DataFrame for the turnout data
-        turnout_data = {
-            "Category": ["General Votes", "Postal Votes", "Total Votes", "Total Voters"],
-            "Votes": [total_general, total_postal, total_votes, total_voters]
-        }
-        turnout_df = pd.DataFrame(turnout_data)
-
-        # Displaying the DataFrame using Streamlit
-        st.subheader(f"Turnout for {district}")
-        st.dataframe(turnout_df)
-
-        # Plotting a pie chart using Plotly Express
-        fig = px.line(turnout_df, x='Category', y='Votes', color_discrete_sequence=['darkcyan'])
-        st.plotly_chart(fig)
-
-
-    for district in selected_districts:
-        district_wise_turnout(district)
 
 if button4:
     st.markdown("<h1 style='color: gray';> Examining Poll Percentage Trends in 2021</h1>", unsafe_allow_html=True)
