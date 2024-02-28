@@ -7,7 +7,6 @@ import streamlit as st
 import plotly.express as px
 import time
 from datetime import datetime
-from streamlit_extras.tags import tagger_component
 st.set_page_config(
     page_title="Election Analytics Hub!",
     page_icon="📊",
@@ -191,12 +190,8 @@ st.markdown(button_style, unsafe_allow_html=True)
 with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 election"):
     
     unique_districts = dataset4_cleaned.index.unique().tolist()
-    tagger_component(
-        "🎯",
-        ["<span style='font-size: 20px;'>Election Turnout Over 234 Constituencies Tamilnadu 2021</span>"],
-        color_name=["#ff0066"],
-     )
-
+    st.markdown("<h4 style='color:#ff0066' ;> 🎯Election Turnout Over 234 Constituencies Tamilnadu 2021</h4>", unsafe_allow_html=True)
+   
     st.write("This tool allows you to analyze election turnout data Over 234 Constituencies. Please select one or more districts/Constituence from the dropdown menu below:")
     # Multi-select box for district selection
     selected_districts = st.multiselect('Select District(s)', unique_districts)
