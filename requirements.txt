@@ -3,4 +3,3 @@ plotly
 streamlit
 requests
 openpyxl
-streamlit_extras.tags
