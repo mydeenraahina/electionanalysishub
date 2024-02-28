@@ -1,29 +1,32 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
 
-# Sample data
-data = {
-    'x1': ["a","b","c","d","e"],
-    'x2': ["a","b","c","d","e"],
+# Left column (Featured Visualizations)
+# Set page title and background color
+st.set_page_config(page_title="Election Data Analysis", page_icon="📊", layout="wide")
+with st.sidebar:
+    st.success("👆Click the above Option")
+st.markdown("<h1 style='color:#ff0066'>🗳️Election Data Analysis!</h1>", unsafe_allow_html=True)
+st.markdown("---")
+# Main content columns
+left_column, right_column = st.columns([1, 1])
 
-    'y1': [2, 3, 5, 7, 11],
+with left_column:
+    st.header("📊📈Featured Visualizations")
+    st.write("""
+    We provide a comprehensive platform for exploring election data and insights. Dive deep into voter turnout, party alliances, and nomination insights to gain valuable perspectives on election trends.
+    """)
+
+    st.markdown("---")
+    st.image("homepicture2.jpeg")
+   
     
-}
+# Right column (About and Contact)
+with right_column:
+    st.image("homepicture.jpeg")
+    st.header("📝About")
+    st.write("""
+    Election Data Analysis is your comprehensive platform for exploring election data and insights.
+    Dive deep into voter turnout, party alliances, and nomination insights to gain valuable perspectives on election trends.
 
-# Convert data to DataFrame
-df = pd.DataFrame(data)
-
-# Create the Plotly Express figure
-fig = px.line(df, x=['x1','x2'], y='y1')
-
-# Update layout to include zooming
-fig.update_layout(
-    title="Multiple Line Graphs",
-    xaxis_title="X-axis",
-    yaxis_title="Y-axis",
-    hovermode="x"
-)
-
-# Display the plot with Streamlit
-st.plotly_chart(fig)
+    
+    """)

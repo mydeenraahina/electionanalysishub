@@ -277,7 +277,15 @@ def total_per():
                     dataset5_cleaned.loc['(CONTESTED CANDIDATES)MALE'][category],
                     dataset5_cleaned.loc['(CONTESTED CANDIDATES)FEMALE'][category],
                     dataset5_cleaned.loc['(CONTESTED CANDIDATES)THIRD GENDER'][category]  # Use category parameter here
+                
+                
+                
+                
+                
                 ]
+
+
+
                     return sum(category_type)
 
     category = ["TOTAL PERFORMANCE", "GEN", "SC", "ST"]

@@ -123,11 +123,6 @@ cleaned_dataset2 = Clean_Dataset2()
 dataset2_cleaned = cleaned_dataset2.cleaned_data(dataset2)
 
 
-st.markdown("<h1 style='color: darkorange ;'> Party Alliance Taminadu Election 2021!</h1>", unsafe_allow_html=True)
-st.write("Explore detailed insights and metrics about the different alliances and parties that participated in the election.")
-st.title("Get Started!")
-st.write("Ready to explore the data? Simply click on the metric of your choice to dive into the analysis!")
-
 
 
 def parties_cons(party,party_name):
@@ -172,39 +167,77 @@ def Secular_Progressive_Alliance():
     st.write(fig)
     
 
-# Create a layout with three columns
-col1, col2, col3,col4,col5,col6,col7= st.columns(7)
 
-# Display a button in each column
+
+st.markdown("<h1 style='color: #ff0066' ;> Party Alliance Taminadu Election 2021!</h1>", unsafe_allow_html=True)
+st.write("Explore detailed insights in Party Alliance Taminadu Election 2021!")
+col1,col2=st.columns(2)
 with col1:
-    button1 = st.button("SECULAR PROGRESSIVE ALLIANCE TAMILNADU ELECTION 2021",key="button1",type="primary")
+    st.title(" Get Started!")
+    st.write("🗳️ Explore insights into Party Alliance Click on the metric below to delve into the analysis!")
+
+    
+    
+
+
 
 with col2:
-    button2 = st.button("NATIONAL DEMOCRATIC ALLIANCE TAMILNADU ELECTION 2021",key="button2",type="primary")
+    st.image("picture1.png",width=200) 
 
-with col3:
-    button3 = st.button("NON-ALIGNED PARTIES TAMILNADU ELECTION 2021",key="button3",type="primary")
-with col4:
-    button4 = st.button("TOP CONTESTED PARTIES TAMILNADU ELECTION 2021",key="button4",type="primary")
 
-with col5:
-    button5 = st.button("MAXIMUM CONTESTED PARTIES TAMILNADU ELECTION 2021",key="button5",type="primary")
-col1, col2= st.columns(2)
-with col1:
 
-    st.markdown("<h1 style='color: darkorange ;'> Here's a brief overview of each topic:</h1>", unsafe_allow_html=True)
+# Instructions for users
+st.info("""This  allows you to explore different aspects of the Tamil Nadu 2021 election
+           To get started, expand the section below 👇🏼 and click 🖱️ on the buttons to view specific metricsand analyses📊.""")
+# Define CSS style for buttons
+button_style = """
+<style>
+.stButton>button {
+    border: none !important;
+    background-color: #ff0066; /* Tomato */
+    color: #FFFFFF !important; /* White */
+    border-radius: 20px !important; /* Adjust the value to change the roundness */
+    padding: 8px 16px !important; /* Adjust the padding to fit the content */
+    font-size: 14px !important; /* Adjust the font size */
+}
+</style>
+"""
 
-    st.caption("1.Secular Progressive Alliance: Led by DMK, secured a significant number of seats, supported by allies like Congress, CPI(M), CPI, VCK, and IUML.")
+# Render the CSS style
+st.markdown(button_style, unsafe_allow_html=True)
 
-    st.caption("2.National Democratic Alliance: Mainly led by AIADMK, BJP, and other partners, obtained a notable share of seats in the election.")
+# Define buttons with numbering, icons, and explanatory text
+with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 election"):
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("🎯 SECULAR PROGRESSIVE ALLIANCE TAMILNADU ELECTION 2021", unsafe_allow_html=True)
+        button1 = st.button("Click to View", key="button1", type="primary")
+        st.markdown("🎯 NATIONAL DEMOCRATIC ALLIANCE TAMILNADU ELECTION 2021", unsafe_allow_html=True)
+        button2 = st.button("Click to View", key="button2", type="primary")
 
-    st.caption("3.Non-Aligned Parties: Varied distribution of seats among smaller parties not aligned with major alliances, reflecting diverse regional and ideological representation.")
+        st.markdown("🎯 NON-ALIGNED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
+        button3 = st.button("Click to View", key="button3", type="primary")
+        
 
-    st.caption("4.Top Contested Parties: DMK and AIADMK emerged as the primary contenders, competing fiercely for a majority of seats.")
+        
 
-    st.caption("5.Maximum Contested Parties: Several parties contested extensively across constituencies, aiming to maximize their representation in the legislative assembly.")
-with col2:
-    st.image("picture1.png",width=500) 
+    with col2:
+        
+        st.markdown("🎯 TOP CONTESTED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
+        button4 = st.button("Click to View", key="button5", type="primary")    
+
+        st.markdown("🎯 MAXIMUM CONTESTED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
+        button5 = st.button("Click to View", key="button6", type="primary")
+
+
+
+
+
+
+
+
+   
 if button1:
   
     st.markdown("<h1 style='color: darkorange;'> Secular Progressive Alliance TN 2021</h1>", unsafe_allow_html=True)
@@ -410,8 +443,7 @@ def top_contested_parties_21():
         st.dataframe(maximum_no_of_seat_contested_parties,width=1000)
         fig = px.pie( maximum_no_of_seat_contested_parties ,values='no_of_seats_contested', names='parties',title='"TOP CONTESTED PARTIES TN 2021"',width=800, height=600)
         st.write(fig)
-        st.subheader("TOP CONTESTED PARTIES TN 2021")
-        st.dataframe(trans,width=1000)
+        
        
 
 if button4:
