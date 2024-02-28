@@ -22,7 +22,7 @@ st.set_page_config(
 
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 
-url3= "https://github.com/mydeenraahina/data_set/blob/main/10-%20Detailed%20Results%20(1).xlsx"
+url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%20Detailed%20Results%20(1).xlsx"
 
 file_1 = "Electors%20Data2.xlsx"
 
