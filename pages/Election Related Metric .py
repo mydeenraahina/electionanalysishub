@@ -21,11 +21,11 @@ st.set_page_config(
 
 
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
-#url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (3).xlsx"
+
 url3= "https://github.com/mydeenraahina/electionanalysishub/blob/master/10-%20Detailed%20Results%20(1).xlsx"
-# Local file names to store the downloaded Excel files
+
 file_1 = "Electors%20Data2.xlsx"
-#file_2 = "PoliticalParties_ContestedSeats (4) (3).xlsx"
+
 file_3="10-%20Detailed%20Results%20(1).xlsx"
 
 class Read_Data():
@@ -47,7 +47,7 @@ class Read_Data():
         else:
             return dataset
 dataset1 = Read_Data.Read_Excel(url1,file_1)
-dataset4=Read_Data.Read_Excel(url3,file_3)
+dataset4 = Read_Data.Read_Excel(url3,file_3)
 class Clean_Dataset1:
 
     def removing_empty_val(self, dataset):
