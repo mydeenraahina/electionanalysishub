@@ -1,9 +1,6 @@
 from requests import get
 import pandas as pd
 import openpyxl
-import matplotlib.pyplot as plt
-import gradio as gr
-import tempfile
 import os
 import webbrowser
 import streamlit as st
