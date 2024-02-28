@@ -47,11 +47,11 @@ st.info("""This  allows you to explore 🗒️ "Election Recap: Comprehensive An
 
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (3).xlsx"
-url3= "https://github.com/mydeenraahina/electionanalysishub/raw/master/10-%20Detailed%20Results%20(1).xlsx"
+url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%20Detailed%20Results%20(1).xlsx"
 # Local file names to store the downloaded Excel files
 file_1 = "Electors%20Data2.xlsx"
 file_2 = "PoliticalParties_ContestedSeats (4) (3).xlsx"
-file_3="10- Detailed Results (1).xlsx"
+file_3="10-%20Detailed%20Results%20(1).xlsx"
 
 class Read_Data():
     # Setting display options for Pandas
