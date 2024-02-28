@@ -79,6 +79,7 @@ class Read_Data():
 # Dataset 1: Electors Data Summary
 dataset1 = Read_Data.Read_Excel(url1,file_1)
 dataset5=Read_Data.Read_Excel(url3,file_3)
+dataset6=Read_Data.Read_Excel(url3,file_3)
 
 class Clean_Dataset1:
 
@@ -258,10 +259,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         pd.options.display.max_columns = 8
 
         # Display the time using Streamlit
-        # URLs for the Excel files
-        path=r'C:\Users\user\AppData\Local\Programs\Python\Python311\10- Detailed Results (1).xlsx'
-        dataset6=pd.read_excel(path)
-        print(dataset6)
+        
         class Clean_Dataset6:
 
             
