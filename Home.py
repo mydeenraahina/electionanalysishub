@@ -11,6 +11,15 @@ st.markdown("---")
 left_column, right_column = st.columns([1, 1])
 
 with left_column:
+    ## Objective:
+    st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
+                We cover topics such as:""")
+
+    st.error(" - Election Nomaination Insights")
+    st.error(" - Election related metric
+    st.error(" - Party alliances")
+    st.error(" - Electoral Result")
+
     st.header("📊📈Featured Visualizations")
     st.write("""
     We provide a comprehensive platform for exploring election data and insights. Dive deep into voter turnout, party alliances, and nomination insights to gain valuable perspectives on election trends.
