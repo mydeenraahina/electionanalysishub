@@ -16,7 +16,7 @@ with left_column:
                 We cover topics such as:""")
 
     st.error(" - Election Nomaination Insights")
-    st.error(" - Election related metric
+    st.error(" - Election related metric")
     st.error(" - Party alliances")
     st.error(" - Electoral Result")
 
