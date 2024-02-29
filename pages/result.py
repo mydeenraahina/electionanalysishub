@@ -450,7 +450,7 @@ with st.expander("📝Click Me to See Over All Report🏛️"):
                     parties.append(party)
                     votes_secured.append(dataset6_cleaned.loc[party]["TOTAL"].sum())
 
-                df = pd.DataFrame({"category": parties, "votes secured": votes_secured})
+                df = pd.DataFrame({"party": parties, "votes secured": votes_secured})
                 
                 # Sort the DataFrame by "votes secured" in descending order
                 df_sorted = df.sort_values(by="votes secured", ascending=False)
