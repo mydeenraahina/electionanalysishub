@@ -6,7 +6,7 @@ import webbrowser
 import streamlit as st
 import plotly.express as px
 import time
-
+from streamlit_extras.tags import tagger_component
 st.set_page_config(
     page_title="Election Analytics Hub!",
     page_icon="📊",
@@ -46,11 +46,11 @@ st.info("""This  allows you to explore 🗒️ "Election Recap: Comprehensive An
    
 
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
-url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (3).xlsx"
+url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4).xlsx"
 url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%20Detailed%20Results%20(1).xlsx"
 # Local file names to store the downloaded Excel files
 file_1 = "Electors%20Data2.xlsx"
-file_2 = "PoliticalParties_ContestedSeats (4) (3).xlsx"
+file_2 = "PoliticalParties_ContestedSeats (4).xlsx"
 file_3="10-%20Detailed%20Results%20(1).xlsx"
 
 class Read_Data():
@@ -78,6 +78,7 @@ class Read_Data():
             return dataset
 # Dataset 1: Electors Data Summary
 dataset1 = Read_Data.Read_Excel(url1,file_1)
+dataset2=Read_Data.Read_Excel(url2,file_2)
 dataset5=Read_Data.Read_Excel(url3,file_3)
 dataset6=Read_Data.Read_Excel(url3,file_3)
 
@@ -144,15 +145,58 @@ cleaned_dataset5=Clean_Dataset5()
 dataset5_cleaned=cleaned_dataset5.cleaned_data(dataset5)
 
 
+class Clean_Dataset2:
+    def droping_cols(self, dataset):
+        # List of columns dropped from the DataFrame
+        drop_columns = ["VOTES", "PERCENTAGE", "FD"]
+        # Drop the specified columns
+        dataset.drop(columns=drop_columns, inplace=True)
+
+    def rename_cols(self, dataset):
+        # Rename the column "ABBREVIATION" to "POLITICAL_PARTIES"
+        dataset.rename(columns={"ABBREVIATION": "POLITICAL_PARTIES"}, inplace=True)
+
+    def removing_empty_val(self, dataset):
+        # Use the removing_empty_val method from Clean_Dataset1 to remove empty values
+        cleaned_dataset1.removing_empty_val(dataset)
+
+    def removing_duplicates(self, dataset):
+        # Use the removing_duplicates method from Clean_Dataset1 to remove duplicate rows
+        cleaned_dataset1.removing_duplicates(dataset)
+
+    def setting_index(self, dataset):
+        # Setting 'POLITICAL_PARTIES' as the index
+        dataset.set_index('POLITICAL_PARTIES', inplace=True)
+
+    def cleaned_data(self, dataset):
+        # Apply cleaning steps
+        self.droping_cols(dataset)
+        self.rename_cols(dataset)
+        self.removing_empty_val(dataset)
+        self.removing_duplicates(dataset)
+        self.setting_index(dataset)
+        return dataset
+
+# Create an instance of Clean_Dataset2
+cleaned_dataset2 = Clean_Dataset2()
+dataset2_cleaned = cleaned_dataset2.cleaned_data(dataset2)
+
+
+
+
+
+
+
+
 
 
 
 constituency = dataset5_cleaned.index.unique()
 
 with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 election"):
-    col1, col2 = st.columns(2)
+    
 
-    with col1:
+    
         st.markdown("<h4 style='color: #ff0066' ;> 🎯 Constituency-wise Party Participation and Vote Share Analysis</h4>", unsafe_allow_html=True)
 
         constituencies = dataset5_cleaned.index.unique().tolist()
@@ -205,15 +249,11 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
 
             winner_votes = constituency_votes["TOTAL"].max()
             runner_up_votes = constituency_votes["TOTAL"][constituency_votes["TOTAL"] < winner_votes].max()
-            second_runner_up_votes = constituency_votes["TOTAL"][
-                (constituency_votes["TOTAL"] < winner_votes) & (constituency_votes["TOTAL"] < runner_up_votes)
-            ].max()
 
             winner_details = constituency_votes[constituency_votes["TOTAL"] == winner_votes]
             runner_up_details = constituency_votes[constituency_votes["TOTAL"] == runner_up_votes]
-            second_runner_up_details = constituency_votes[constituency_votes["TOTAL"] == second_runner_up_votes]
 
-            result_df = pd.concat([winner_details, runner_up_details, second_runner_up_details])
+            result_df = pd.concat([winner_details, runner_up_details])
 
             party_votes_list = result_df[["PARTY", "TOTAL"]].values.tolist()
             candidate_names_list = result_df["CANDIDATE NAME"].values.tolist()
@@ -221,14 +261,14 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             df = pd.DataFrame(party_votes_list, columns=["Party", "Total Votes"])
             df["Candidate Name"] = candidate_names_list
 
-            status = ["Winner", "Runner-up", "Second Runner-up"]
+            status = ["Winner", "Runner-up"]
             df["Status"] = status * (len(df) // len(status)) + status[:len(df) % len(status)]
 
             total_row = pd.DataFrame([["Total", total_votes, ""]], columns=["Party", "Total Votes", "Status"])
 
             df = pd.concat([df, total_row], ignore_index=True)
             st.write(df)
-            colors = {'Winner': 'green', 'Runner-up': 'orange', 'Second Runner-up': 'blue', 'Total Votes': 'gray'}
+            colors = {'Winner': 'green', 'Runner-up': 'orange', 'Total Votes': 'gray'}
 
             fig = px.bar(df, x='Total Votes', y='Party', orientation='h', title=f'Votes by Party in {constituency}',
                         color='Status', color_discrete_map=colors)
@@ -242,7 +282,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             ))
 
             return fig
-   
+
         constituencies = dataset5_cleaned.index.unique().tolist()
 
         # Generate a unique key for the multiselect widget
@@ -259,6 +299,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         pd.options.display.max_columns = 8
 
         # Display the time using Streamlit
+        # URLs for the Excel files
         
         class Clean_Dataset6:
 
@@ -285,7 +326,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
 
         cleaned_dataset6=Clean_Dataset6()
         dataset6_cleaned=cleaned_dataset6.cleaned_data(dataset6)
-        st.markdown("<h3 style='color: #ff0066' ;>🎯 Tamil Nadu Election Analysis: Party-wise Vote Share</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color: #ff0066' ;>🎯  Party-wise Vote Share</h3>", unsafe_allow_html=True)
 
         
         total_unique_parties = dataset6_cleaned.index.unique()
@@ -332,7 +373,29 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             st.write(df)
             fig = px.area(df, x="Constituency", y="total_votes")
             st.write(fig)
-        
+        st.markdown("<h3 style='color: #ff0066' ;>🎯 Election Constituency Breakdown: Parties and Constituencies </h3>", unsafe_allow_html=True)
+        total_parties = dataset2_cleaned.index.unique()
+
+        # Create a multiselect box to select parties
+        selected_parties = st.multiselect("Select Parties", total_parties)
+
+        for party in selected_parties:
+            total_cons = dataset1_cleaned.loc["NO. OF CONSTITUENCIES"].sum()
+            contested = dataset2_cleaned.loc[party]["CONTESTED"]
+            secured = dataset2_cleaned.loc[party]["WON"]
+            category = ["TOTAL CONSTITUENCE TN 21", f"TOTAL {party} CONTESTED CONSTITUENCE", f"TOTAL CONSTITUENCE SECURED BY {party}"]
+            cons = [total_cons, contested, secured]
+            
+            # Naming the DataFrame
+            party_stats_df = pd.DataFrame({"Category": category, "Count": cons})
+            st.subheader(f"{party} Constituency Analysis")  # Corrected 'Party' to 'party'
+            st.dataframe(party_stats_df)
+
+            # Naming the figure
+            party_stats_fig = px.bar(party_stats_df, x="Category", y="Count", title=f"Constituency Analysis by {party}")  # Corrected 'Party' to 'party'
+            st.plotly_chart(party_stats_fig)
+
+                
 with st.expander("📝Click Me to See Over All Report🏛️"):
     col1, col2 = st.columns(2)
     with col1:
@@ -362,10 +425,24 @@ with st.expander("📝Click Me to See Over All Report🏛️"):
                 st.dataframe(df)
                 fig=px.area(df,x="category",y="votes secured")
                 st.write(fig)
-
-            st.markdown("🎯Tamil Nadu 2021 Election Recap: Comprehensive Analysis of Winners, Runners-up</h3>", unsafe_allow_html=True)
+            st.markdown("🎯 Party-wise Comparison: Total Constituencies Secured", unsafe_allow_html=True)
             button2 = st.button("Click to View", key="button2", type="primary")
             if button2:
+
+                
+                df = pd.DataFrame({"Parties": dataset2_cleaned.index, "Constituencies secured": dataset2_cleaned["CONTESTED"]})
+
+            # Display the DataFrame
+                st.dataframe(df)
+
+            # Create a bar chart
+                party_stats_fig = px.area(df, x="Parties", y="Constituencies secured", title="Contested Constituencies by Party")
+                st.plotly_chart(party_stats_fig)
+        
+
+            st.markdown("🎯Tamil Nadu 2021 Election Recap: Comprehensive Analysis of Winners, Runners-up</h3>", unsafe_allow_html=True)
+            button3 = st.button("Click to View", key="button3", type="primary")
+            if button3:
                 parties = []
                 votes_secured = []
 
@@ -374,31 +451,24 @@ with st.expander("📝Click Me to See Over All Report🏛️"):
                     votes_secured.append(dataset6_cleaned.loc[party]["TOTAL"].sum())
 
                 df = pd.DataFrame({"category": parties, "votes secured": votes_secured})
-
+                
                 # Sort the DataFrame by "votes secured" in descending order
                 df_sorted = df.sort_values(by="votes secured", ascending=False)
-
+                
                 # Select the top three rows as winner, first runner-up, and second runner-up
-                winner_runner_df = df_sorted.head(3)
+                winner_runner_df = df_sorted.head(2)
+                custom_index = ['Winner', 'Runner']  # Define your custom index values
+                winner_runner_df.index = custom_index
+                st.write(winner_runner_df)
 
                 # Assigning labels and colors to winner, first runner-up, and second runner-up
-                winner_runner_df.loc[:, 'Position'] = ['Winner', 'First Runner-up', 'Second Runner-up']
-                winner_runner_df.loc[:, 'Status'] = ['Winner', 'First Runner-up', 'Second Runner-up']
+                winner_runner_df.loc[:, 'Position'] = ['Winner', 'First Runner-up']
+                winner_runner_df.loc[:, 'Status'] = ['Winner', 'First Runner-up']
 
                 # Plotting the bar chart
-                fig = px.bar(winner_runner_df, x="category", y="votes secured", color='Status',
-                            labels={"category": "Party", "votes secured": "Votes Secured"},
-                            color_discrete_map={'Winner': 'green', 'First Runner-up': 'blue', 'Second Runner-up': 'yellow'})
+                fig = px.bar(winner_runner_df, x="party", y="votes secured", color='Status',
+                            labels={"party": "Party", "votes secured": "Votes Secured"},
+                            color_discrete_map={'Winner': 'green', 'First Runner-up': 'blue'})
                 st.plotly_chart(fig)
-
-
-
-
-
-
-
-    
-
-    
 
 
