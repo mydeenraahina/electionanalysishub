@@ -399,15 +399,6 @@ with st.expander("📝Click Me to See Over All Report🏛️"):
 
     
 
-    selected_parties = st.multiselect("Select parties", total_unique_parties)
-
-    for party in selected_parties:
-        total_cons = dataset1_cleaned.loc["NO. OF CONSTITUENCIES"].sum()
-        total_constituency = len(dataset6_cleaned.loc[party]["AC NAME"])
-        constituency = ["TOTAL CONSTITUENCE", "DMK CONSTITUENCE"]
-        total = [total_cons, total_constituency]
-        df = pd.DataFrame({"constituency": constituency, "Total": total})
-        fig = px.bar(df, x="constituency", y="Total")
-        st.write(fig)
+    
 
 
