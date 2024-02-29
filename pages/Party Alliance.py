@@ -1,6 +1,7 @@
 from requests import get
 import pandas as pd
 import openpyxl
+
 import os
 import webbrowser
 import streamlit as st
@@ -16,10 +17,10 @@ st.set_page_config(
 )
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 
-url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (3).xlsx"
+url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (4).xlsx"
 # Local file names to store the downloaded Excel files
 
-file_2 = "PoliticalParties_ContestedSeats (4) (3).xlsx"
+file_2 = "PoliticalParties_ContestedSeats (4) (4).xlsx"
 
 file_1 = "Electors%20Data2.xlsx"
 
@@ -220,12 +221,16 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         
 
     with col2:
-        
+        st.markdown("🎯 PEOPLES FRONT TN 2021", unsafe_allow_html=True)
+        button4 = st.button("Click to View", key="button4", type="primary")    
+        st.markdown("🎯  People's First Alliance TAMILNADU ELECTION 2021", unsafe_allow_html=True)
+        button5 = st.button("Click to View", key="button5", type="primary")    
+
         st.markdown("🎯 TOP CONTESTED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
-        button4 = st.button("Click to View", key="button5", type="primary")    
+        button6 = st.button("Click to View", key="button6", type="primary")    
 
         st.markdown("🎯 MAXIMUM CONTESTED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
-        button5 = st.button("Click to View", key="button6", type="primary")
+        button7 = st.button("Click to View", key="button7", type="primary")
 
 
 
@@ -422,7 +427,92 @@ if button3:
         parties_cons('CPI(ML)(L)','CPI(ML)(L) ( Contestment TN 2021')
     with tab6:
         parties_cons('SAP','SAP   Contestment TN 2021')
-     
+def people_fronts():
+    
+                        
+                              
+    def people_fronts_parties(party):
+        parties_contest=dataset2_cleaned.loc[party]['CONTESTED']
+        return parties_contest
+    non_ap_parties=["AMMKMNKZ","DMDK","SDPI","AIMIM"]
+    ammkkmnkz=people_fronts_parties(non_ap_parties[0])
+    dmdk=people_fronts_parties(non_ap_parties[1])
+    psdpi=people_fronts_parties(non_ap_parties[2])
+    aimim=people_fronts_parties(non_ap_parties[3])
+    non_ap_seats_allince=[ammkkmnkz,dmdk,psdpi,aimim]
+    
+    Total_non_ap_allince_parties = pd.DataFrame({"party":non_ap_parties, "Contested seats": non_ap_seats_allince})
+
+    st.subheader(" Seat Contestment of   Peoples Front  TN  (2021)")
+    st.dataframe(Total_non_ap_allince_parties ,width=1000)
+    fig = px.pie(Total_non_ap_allince_parties, values='Contested seats', names='party', title='Peoples Front TN (2021)', width=800, height=600)
+    st.write(fig)
+   
+if button4:
+    st.markdown("<h1 style='color: teal;'> Peoples Front  TN  (2021)</h1>", unsafe_allow_html=True)
+    
+    tab1, tab2, tab3,tab4,tab5=st.tabs(["People front parties TN 2021"," AMMKMNKZ contestment","DMDK contestment","SDPI contestment","AIMIM contestment"])
+    with tab1:
+        people_fronts()
+    with tab2:
+        parties_cons('AMMKMNKZ','AMMKMNKZ (Contestment TN 2021')
+    with tab3:
+        parties_cons('DMDK','DMDK Contestment TN 2021')
+    with tab4:
+        parties_cons('SDPI','SDPI  Contestment TN 2021')
+    with tab5:
+        parties_cons('AIMIM','AIMIM ( Contestment TN 2021')
+
+
+def people_alliance():
+    
+                        
+                              
+    def people_alliance_first(party):
+        parties_contest=dataset2_cleaned.loc[party]['CONTESTED']
+        return parties_contest
+    non_ap_parties=["MNM","IJK","AISMK","TMJK","JDMK","JD(S)","KMI"]
+    mnm=people_alliance_first(non_ap_parties[0])
+    ijk=people_alliance_first(non_ap_parties[1])
+    aismk=people_alliance_first(non_ap_parties[2])
+    tmjk=people_alliance_first(non_ap_parties[3])
+    jdmk=people_alliance_first(non_ap_parties[4])
+    jds=people_alliance_first(non_ap_parties[5])
+    kmi=people_alliance_first(non_ap_parties[6])
+    non_ap_seats_allince=[(mnm,ijk,aismk,tmjk,jdmk,jds,kmi)]
+    
+    Total_non_ap_allince_parties = pd.DataFrame({"party": non_ap_parties, "Contested seats": [mnm, ijk, aismk, tmjk, jdmk, jds, kmi]})
+
+    st.subheader(" Seat Contestment of   Peoples Front  TN  (2021)")
+    st.dataframe(Total_non_ap_allince_parties ,width=1000)
+    fig = px.pie(Total_non_ap_allince_parties, values='Contested seats', names='party', title='Peoples First Alliance TN (2021)', width=800, height=600)
+    st.write(fig)
+  
+if button5:
+    st.markdown("<h1 style='color: teal;'>  People's First Alliance  TN  (2021)</h1>", unsafe_allow_html=True)
+    
+    non_ap_parties=["MNM","IJK","AISMK","TMJK","JDMK","JD(S)","KMI"]
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["People front parties TN 2021", "MNM contestment", "IJK contestment", "AISMK contestment", "TMJK contestment", "JDMK contestment", "JD(S) contestment", "KMI contestment"])
+    with tab1:
+        people_alliance()
+    with tab2:
+        parties_cons('MNM','MNM (Contestment TN 2021')
+    with tab3:
+        parties_cons('IJK','IJK Contestment TN 2021')
+    with tab4:
+        parties_cons('AISMK','AISMK  Contestment TN 2021')
+    with tab5:
+        parties_cons('TMJK','TMJK ( Contestment TN 2021)')
+    with tab6:
+        parties_cons('JDMK','JDMK ( Contestment TN 2021')
+       
+    with tab7:
+        parties_cons('JD(S)','JD(S) ( Contestment TN 2021')
+       
+    with tab8:
+        parties_cons('KMI','KMI ( Contestment TN 2021')
+       
+       
 def top_contested_parties_21():
        
         no_of_unique_parties=dataset2_cleaned.index.unique()
@@ -443,7 +533,7 @@ def top_contested_parties_21():
         
        
 
-if button4:
+if button6:
      st.markdown("<h1 style='color: teal;'>TOP CONTESTED PARTIES TAMILNADU ELECTION  2021</h1>", unsafe_allow_html=True)
          
      st.caption("""The pie chart provides a clear snapshot of the electoral landscape, illustrating the relative
@@ -505,7 +595,7 @@ def max_contested_parties_21():
         fig = px.pie(maximum_no_of_seat_contested_parties ,values='no_of_seats_contested', names='parties',title='MAXIMUM  NO . OF CONTESTED PARTIES  TAMILNADU ELECTION 2021',width=800, height=600)
         st.write(fig)
         
-if button5:
+if button7:
     st.markdown("<h1 style='color: teal;'>MAXIMUM CONTESTED PARTIES  TAMILNADU ELECTION 2021</h1>", unsafe_allow_html=True)
     st.caption("""The Tamil Nadu State Assembly elections of 2021 marked a significant chapter in the state's political history, characterized by
                              a plethora of contested parties vying for electoral success. With a diverse array of political ideologies and aspirations, the electoral
