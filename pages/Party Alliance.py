@@ -17,10 +17,10 @@ st.set_page_config(
 )
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 
-url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (4).xlsx"
+url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats%20(4)%20(4).xlsx"
 # Local file names to store the downloaded Excel files
 
-file_2 = "PoliticalParties_ContestedSeats (4) (4).xlsx"
+file_2 = "PoliticalParties_ContestedSeats%20(4)%20(4).xlsx"
 
 file_1 = "Electors%20Data2.xlsx"
 
