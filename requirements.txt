@@ -3,3 +3,4 @@ plotly
 streamlit
 requests
 openpyxl
+pandasai
