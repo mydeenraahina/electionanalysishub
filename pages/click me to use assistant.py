@@ -77,7 +77,7 @@ df3=pd.DataFrame(dataset2)
 
 
 
-st.image("chatbot.gif")
+st.image("chatbot1.gif")
 st.title("Here is your Assistant!")
 query = st.text_area("Enter your query:")
 
