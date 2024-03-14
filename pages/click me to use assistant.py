@@ -13,14 +13,25 @@ st.set_page_config(
     initial_sidebar_state="expanded",
    
 )
+# Set OpenAI API key
+os.environ["OPENAI_API_KEY"] = "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"
+
 pd.options.display.max_rows = 300
 pd.options.display.max_columns = 8
 
 # Display the time using Streamlit
 # URLs for the Excel files
-url1 = "https://github.com/mydeenraahina/data_set/raw/main/Candidates%20Data%20Summary.xlsx"
+url1 = "https://github.com/mydeenraahina/data_set/raw/main/Detailed%20Results.xlsx"
+ur12="https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
+url3="https://github.com/mydeenraahina/data_set/raw/main/Performance of Political Partiesfor chatbot.xlsx"
+url4="https://github.com/mydeenraahina/data_set/raw/main/Candidates%20Data%20Summarychart.xlsx"
 
-file_1 = "Candidates%20Data%20Summary.xlsx"
+
+file_1 = "Detailed%20Results.xlsx"
+file_2 = "Electors Data Summary chardata.xlsx"
+file_3 = "Performance of Political Partiesfor chatbot.xlsx"
+file_4 = "Candidates%20Data%20Summarychart.xlsx"
+
 
 
 class Read_Data():
@@ -47,26 +58,21 @@ class Read_Data():
             # Return the dataset if successfully read
             return dataset
 # Dataset 1: Electors Data Summary
-dataset1 = Read_Data.Read_Excel(url1,file_1)
+dataset = Read_Data.Read_Excel(url1,file_1)
+dataset1 = Read_Data.Read_Excel(url2,file_2)
+dataset2 = Read_Data.Read_Excel(url3,file_3)
+dataset3 = Read_Data.Read_Excel(url4,file_4)
 
 
-
-# Set OpenAI API key
-os.environ["OPENAI_API_KEY"] = "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"
-path=r"C:\Users\user\AppData\Local\Programs\Python\Python311\Electors Data Summary chardata.xlsx"
-path1=r"C:\Users\user\AppData\Local\Programs\Python\Python311\Detailed Results.xlsx"
-path2=r"C:\Users\user\AppData\Local\Programs\Python\Python311\Performance of Political Partiesfor chatbot.xlsx"
-path3=r"C:\Users\user\AppData\Local\Programs\Python\Python311\Candidates%20Data%20Summary.xlsx"
-dataset=pd.read_excel(path1)
 dataset.dropna(inplace=True)
 df1=pd.DataFrame(dataset)
-dataset1 =pd.read_excel(path2)
+
 dataset1.dropna(inplace=True)
 df2=pd.DataFrame(dataset1)
-dataset2=pd.read_excel(path2)
+
 dataset2.dropna(inplace=True)
 df3=pd.DataFrame(dataset2)
-dataset3=pd.read_excel(path3)
+
 dataset3.dropna(inplace=True)
 df4=pd.DataFrame(dataset3)
 
