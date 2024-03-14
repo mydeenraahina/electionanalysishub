@@ -40,7 +40,7 @@ class Read_Data():
     pd.options.display.max_columns = 8
 
     @staticmethod
-    def Read_Excel(url, file_name):
+    def Read_Excel(url,file_name):
         try:
             # Sending a GET request to the URL to retrieve the file content
             retrieve = get(url)
@@ -59,7 +59,8 @@ class Read_Data():
             return dataset
 # Dataset 1: Electors Data Summary
 dataset = Read_Data.Read_Excel(url1,file_1)
-dataset1 = Read_Data.Read_Excel(url2,file_2)
+dataset1 = Read_Data.Read_Excel(ur12,file_2)
+
 dataset2 = Read_Data.Read_Excel(url3,file_3)
 dataset3 = Read_Data.Read_Excel(url4,file_4)
 
