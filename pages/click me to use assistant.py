@@ -66,7 +66,7 @@ dataset2 = Read_Data.Read_Excel(url3,file_3)
 
 
 dataset0.dropna(inplace=True)
-df1=pd.DataFrame(dataset)
+df1=pd.DataFrame(dataset0)
 
 dataset1.dropna(inplace=True)
 df2=pd.DataFrame(dataset1)
