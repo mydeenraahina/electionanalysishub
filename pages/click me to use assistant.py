@@ -24,13 +24,13 @@ pd.options.display.max_columns = 8
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Detailed%20Results.xlsx"
 ur12="https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
 url3="https://github.com/mydeenraahina/data_set/raw/main/Performance of Political Partiesfor chatbot.xlsx"
-url4="https://github.com/mydeenraahina/data_set/raw/main/Candidates%20Data%20Summarychart.xlsx"
+
 
 
 file_1 = "Detailed%20Results.xlsx"
 file_2 = "Electors Data Summary chardata.xlsx"
 file_3 = "Performance of Political Partiesfor chatbot.xlsx"
-file_4 = "Candidates%20Data%20Summarychart.xlsx"
+
 
 
 
@@ -58,14 +58,14 @@ class Read_Data():
             # Return the dataset if successfully read
             return dataset
 # Dataset 1: Electors Data Summary
-dataset = Read_Data.Read_Excel(url1,file_1)
+dataset0 = Read_Data.Read_Excel(url1,file_1)
 dataset1 = Read_Data.Read_Excel(ur12,file_2)
 
 dataset2 = Read_Data.Read_Excel(url3,file_3)
-dataset3 = Read_Data.Read_Excel(url4,file_4)
 
 
-dataset.dropna(inplace=True)
+
+dataset0.dropna(inplace=True)
 df1=pd.DataFrame(dataset)
 
 dataset1.dropna(inplace=True)
@@ -74,8 +74,6 @@ df2=pd.DataFrame(dataset1)
 dataset2.dropna(inplace=True)
 df3=pd.DataFrame(dataset2)
 
-dataset3.dropna(inplace=True)
-df4=pd.DataFrame(dataset3)
 
 
 
@@ -85,7 +83,7 @@ query = st.text_area("Enter your query:")
 
 # Initialize OpenAI LLM and SmartDatalake
 llm = OpenAI(api_token=os.environ["OPENAI_API_KEY"])
-dl = SmartDatalake([df1,df2,df3,df4], config={"llm": llm})
+dl = SmartDatalake([df1,df2,df3], config={"llm": llm})
 
 # Chatbot interaction
 if query:
