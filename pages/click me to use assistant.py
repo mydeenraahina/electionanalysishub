@@ -14,7 +14,7 @@ st.set_page_config(
    
 )
 # Set OpenAI API key
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 pd.options.display.max_rows = 300
 pd.options.display.max_columns = 8
@@ -30,9 +30,6 @@ url3="https://github.com/mydeenraahina/data_set/raw/main/Performance of Politica
 file_1 = "Detailed%20Results.xlsx"
 file_2 = "Electors Data Summary chardata.xlsx"
 file_3 = "Performance of Political Partiesfor chatbot.xlsx"
-
-
-
 
 class Read_Data():
     # Setting display options for Pandas
@@ -57,13 +54,11 @@ class Read_Data():
         else:
             # Return the dataset if successfully read
             return dataset
+
 # Dataset 1: Electors Data Summary
 dataset0 = Read_Data.Read_Excel(url1,file_1)
 dataset1 = Read_Data.Read_Excel(ur12,file_2)
-
 dataset2 = Read_Data.Read_Excel(url3,file_3)
-
-
 
 dataset0.dropna(inplace=True)
 df1=pd.DataFrame(dataset0)
@@ -74,11 +69,8 @@ df2=pd.DataFrame(dataset1)
 dataset2.dropna(inplace=True)
 df3=pd.DataFrame(dataset2)
 
-
-
-
-
-st.title("Here is your Assistant!")
+st.image("chatbot.gif")
+st.title("Here is your AI Assistant!")
 query = st.text_area("Enter your query:")
 
 # Initialize OpenAI LLM and SmartDatalake
@@ -88,4 +80,6 @@ dl = SmartDatalake([df1,df2,df3], config={"llm": llm})
 # Chatbot interaction
 if query:
     result = dl.chat(query)
-    st.write(result)
+    st.write("User(you): " + query)
+    st.write("AI Assistant: " + result)
+
