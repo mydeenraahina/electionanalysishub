@@ -17,8 +17,8 @@ response = requests.get(endpoint_url, headers=headers)
 
 # Check the response status code
 if response.status_code == 200:
-    print("Authentication successful!")
+    st.write("Authentication successful!")
     # Proceed with your code for making requests
     # ...
 else:
-    print("Authentication failed. Check your API key and headers.")
+    st.write("Authentication failed. Check your API key and headers.")
