@@ -14,7 +14,7 @@ st.set_page_config(
    
 )
 # Set OpenAI API key
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 pd.options.display.max_rows = 300
 pd.options.display.max_columns = 8
@@ -69,7 +69,7 @@ df2=pd.DataFrame(dataset1)
 dataset2.dropna(inplace=True)
 df3=pd.DataFrame(dataset2)
 
-
+st.image("chatbot.gif")
 st.title("Here is your AI Assistant!")
 query = st.text_area("Enter your query:")
 
