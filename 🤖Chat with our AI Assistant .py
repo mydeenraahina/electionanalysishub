@@ -69,7 +69,7 @@ df2=pd.DataFrame(dataset1)
 dataset2.dropna(inplace=True)
 df3=pd.DataFrame(dataset2)
 
-st.image("chatbot.gif")
+st.image("chatbot1.gif")
 st.title("Here is your AI Assistant!")
 query = st.text_area("Enter your query:")
 
