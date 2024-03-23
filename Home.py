@@ -1,4 +1,4 @@
-icture2import streamlit as st
+import streamlit as st
 
 # Left column (Featured Visualizations)
 # Set page title and background color
