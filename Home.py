@@ -20,7 +20,7 @@ with left_column:
     """)
 
     st.markdown("---")
-    st.image("homepicture2.png")
+    st.image("homepicture (3).png")
     import streamlit as st
 
 st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
