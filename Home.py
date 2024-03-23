@@ -47,3 +47,4 @@ with right_column:
     st.header("📝About")
     st.write("""
     This Election Data Analysis, your hub for election insights. Explore voter turnout, party alliances, Candidates Details,Elction Result and nomination trends. Meet our AI assistant for personalized assistance and deeper insights. Ask questions, get clarifications, and navigate election dynamics effortlessly!.  """)
+    st.title("Happy Exploring!...")
