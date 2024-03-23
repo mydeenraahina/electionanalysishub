@@ -77,13 +77,21 @@ query = st.text_area("Enter your query:")
 llm = OpenAI(api_token=os.environ["OPENAI_API_KEY"])
 dl = SmartDatalake([df1,df2,df3], config={"llm": llm})
 
-import streamlit as st
-
-# Display the arrow sign in a markdown string
-arrow_sign = "&#x25b6;"  # Unicode for a right-pointing black arrow
-
-# Display the arrow sign for interaction
-if st.markdown(f"## {arrow_sign}", unsafe_allow_html=True):
+# Chatbot interaction
+if st.button("Submit", key="primary", help="Submit query"):
     result = dl.chat(query)
     st.write("User(you): " + query)
     st.write("AI Assistant: " + result)
+
+# Apply CSS to the button for styling
+st.markdown(
+    """
+    <style>
+    div[data-testid="stButton"] button {
+        background-color: #007bff !important;
+        color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
