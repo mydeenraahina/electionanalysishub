@@ -31,13 +31,8 @@ st.info(" - Election-related metrics")
 st.info(" - Party alliances")
 st.info(" - Candidates Details")
 st.info(" - Electoral Results")
+st.info(" - AI Chat Facility")
 
-# Add AI chat facility introduction
-st.markdown("""
-    ### AI Chat Facility
-    
-    Need assistance or have questions? Our AI assistant is here to help! Simply type your query in the chat box below and get instant answers and insights.
-""")
 
 st.title("Happy Exploring!...") 
     
