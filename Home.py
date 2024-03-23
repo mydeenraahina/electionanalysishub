@@ -39,7 +39,7 @@ st.markdown("""
     Need assistance or have questions? Our AI assistant is here to help! Simply type your query in the chat box below and get instant answers and insights.
 """)
 
-  st.title("Happy Exploring!...") 
+st.title("Happy Exploring!...") 
     
 # Right column (About and Contact)
 with right_column:
