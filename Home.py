@@ -20,7 +20,7 @@ with left_column:
     """)
 
     st.markdown("---")
-    st.image("homepicture2.jpeg")
+    st.image("homepicture.jpg")
     st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
                 We cover topics such as:""")
 
@@ -32,7 +32,7 @@ with left_column:
     
 # Right column (About and Contact)
 with right_column:
-    st.image("homepicture.jpeg")
+    st.image("image.png")
     st.header("📝About")
     st.write("""
     Election Data Analysis is your comprehensive platform for exploring election data and insights.
