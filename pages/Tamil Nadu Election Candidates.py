@@ -6,14 +6,13 @@ from pandasai import SmartDatalake
 from requests import get
 import openpyxl
 import webbrowser
-
 st.set_page_config(
     page_title="Election Analytics Hub!",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
+   
 )
-
 # Set OpenAI API key
 os.environ["OPENAI_API_KEY"] = "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"
 
@@ -23,8 +22,10 @@ pd.options.display.max_columns = 8
 # Display the time using Streamlit
 # URLs for the Excel files
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Detailed%20Results.xlsx"
-ur12 = "https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
-url3 = "https://github.com/mydeenraahina/data_set/raw/main/Performance of Political Partiesfor chatbot.xlsx"
+ur12="https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
+url3="https://github.com/mydeenraahina/data_set/raw/main/Performance of Political Partiesfor chatbot.xlsx"
+
+
 
 file_1 = "Detailed%20Results.xlsx"
 file_2 = "Electors Data Summary chardata.xlsx"
@@ -46,7 +47,7 @@ class Read_Data():
               file.write(retrieve.content)
 
             # Reading the Excel file using pandas
-            dataset = pd.read_excel(file_name, engine='openpyxl')
+            dataset = pd.read_excel(file_name,engine='openpyxl')
         except FileNotFoundError as e1:
             # Print an error message if the file is not found
             print(f"Error: {e1} File not found")
@@ -55,33 +56,42 @@ class Read_Data():
             return dataset
 
 # Dataset 1: Electors Data Summary
-dataset0 = Read_Data.Read_Excel(url1, file_1)
-dataset1 = Read_Data.Read_Excel(ur12, file_2)
-dataset2 = Read_Data.Read_Excel(url3, file_3)
+dataset0 = Read_Data.Read_Excel(url1,file_1)
+dataset1 = Read_Data.Read_Excel(ur12,file_2)
+dataset2 = Read_Data.Read_Excel(url3,file_3)
 
 dataset0.dropna(inplace=True)
-df1 = pd.DataFrame(dataset0)
+df1=pd.DataFrame(dataset0)
 
 dataset1.dropna(inplace=True)
-df2 = pd.DataFrame(dataset1)
+df2=pd.DataFrame(dataset1)
 
 dataset2.dropna(inplace=True)
-df3 = pd.DataFrame(dataset2)
+df3=pd.DataFrame(dataset2)
 
 st.image("chatbot.gif")
 st.title("Here is your AI Assistant!")
 query = st.text_area("Enter your query:")
-submit_button = st.button("Submit")
 
 # Initialize OpenAI LLM and SmartDatalake
 llm = OpenAI(api_token=os.environ["OPENAI_API_KEY"])
-dl = SmartDatalake([df1, df2, df3], config={"llm": llm})
+dl = SmartDatalake([df1,df2,df3], config={"llm": llm})
 
 # Chatbot interaction
-if submit_button:
-    if query:
-        result = dl.chat(query)
-        st.write("User(you): " + query)
-        st.write("AI Assistant: " + result)
-    else:
-        st.write("Please enter a query before submitting.")
+if st.button("Submit", key="primary", help="Submit query"):
+    result = dl.chat(query)
+    st.write("User(you): " + query)
+    st.write("AI Assistant: " + result)
+
+# Apply CSS to the button for styling
+st.markdown(
+    """
+    <style>
+    div[data-testid="stButton"] button {
+        background-color: #007bff !important;
+        color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
