@@ -16,27 +16,34 @@ with left_column:
 
     st.header("📊📈Featured Visualizations")
     st.write("""
-    We provide a comprehensive platform for exploring election data and insights. Dive deep into voter turnout, party alliances, and nomination insights to gain valuable perspectives on election trends.
+   Discover a comprehensive platform for exploring election data and gaining insights. Delve into voter turnout, party alliances, and nomination insights to uncover valuable perspectives on election trends.
     """)
 
     st.markdown("---")
     st.image("homepicture2.png")
-    st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
+    import streamlit as st
+
+st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
                 We cover topics such as:""")
 
-    st.error(" - Election Nomaination Insights")
-    st.error(" - Election related metric")
-    st.error(" - Party alliances")
-    st.error(" - Electoral Result")
+st.info(" - Election Nomination Insights")
+st.info(" - Election-related metrics")
+st.info(" - Party alliances")
+st.info(" - Candidates Details")
+st.info(" - Electoral Results")
+
+# Add AI chat facility introduction
+st.markdown("""
+    ### AI Chat Facility
+    
+    Need assistance or have questions? Our AI assistant is here to help! Simply type your query in the chat box below and get instant answers and insights.
+""")
+
    
     
 # Right column (About and Contact)
 with right_column:
-    st.image("homepicture.jpg")
+    st.image("homepicture(3).png")
     st.header("📝About")
     st.write("""
-    Election Data Analysis is your comprehensive platform for exploring election data and insights.
-    Dive deep into voter turnout, party alliances, and nomination insights to gain valuable perspectives on election trends.
-
-    
-    """)
+    This Election Data Analysis, your hub for election insights. Explore voter turnout, party alliances, Candidates Details,Elction Result and nomination trends. Meet our AI assistant for personalized assistance and deeper insights. Ask questions, get clarifications, and navigate election dynamics effortlessly!.  """)
