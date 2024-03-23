@@ -1,4 +1,4 @@
-import streamlit as st
+icture2import streamlit as st
 
 # Left column (Featured Visualizations)
 # Set page title and background color
@@ -20,7 +20,7 @@ with left_column:
     """)
 
     st.markdown("---")
-    st.image("homepicture.jpg")
+    st.image("homepicture2.png")
     st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
                 We cover topics such as:""")
 
@@ -32,7 +32,7 @@ with left_column:
     
 # Right column (About and Contact)
 with right_column:
-    st.image("image.png")
+    st.image("homepicture.jpg")
     st.header("📝About")
     st.write("""
     Election Data Analysis is your comprehensive platform for exploring election data and insights.
