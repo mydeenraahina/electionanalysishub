@@ -39,7 +39,7 @@ st.markdown("""
     Need assistance or have questions? Our AI assistant is here to help! Simply type your query in the chat box below and get instant answers and insights.
 """)
 
-   
+  st.title("Happy Exploring!...") 
     
 # Right column (About and Contact)
 with right_column:
@@ -47,4 +47,4 @@ with right_column:
     st.header("📝About")
     st.write("""
     This Election Data Analysis, your hub for election insights. Explore voter turnout, party alliances, Candidates Details,Elction Result and nomination trends. Meet our AI assistant for personalized assistance and deeper insights. Ask questions, get clarifications, and navigate election dynamics effortlessly!.  """)
-    st.title("Happy Exploring!...")
+    
