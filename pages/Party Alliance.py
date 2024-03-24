@@ -520,7 +520,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             max_seated_parties_contested=[]
             for attemp in no_of_unique_parties:
                  if dataset2_cleaned.loc[attemp]['CONTESTED'] >=150.0 and dataset2_cleaned.loc[attemp]['CONTESTED']<=234.0:
-                        max_seated_party.append(attemp)
+                    max_seated_party.append(attemp)
                     contested=dataset2_cleaned.loc[attemp]['CONTESTED']
                     max_seated_parties_contested.append(contested)
                  
