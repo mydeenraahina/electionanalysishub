@@ -31,12 +31,15 @@ with right_column:
     st.info(" - Candidates Details")
     st.info(" - Electoral Results")
     st.info(" - AI Chat Facility")
-cols1,cols2=st.columns(2)
+col1,col2=st.columns(2)
 # Below the main content columns
-st.title("Happy Exploring!...") 
-st.image("homepicture2.png")
-
-st.header("📝About")
+with col1:
+    st.header("📝About")
 st.write("""
     This Election Data Analysis, your hub for election insights. Explore voter turnout, party alliances, Candidates Details, Election Result and nomination trends. Meet our AI assistant for personalized assistance and deeper insights. Ask questions, get clarifications, and navigate election dynamics effortlessly!
 """)
+with col2:
+    
+    st.image("homepicture2.png")
+st.title("Happy Exploring!...") 
+
