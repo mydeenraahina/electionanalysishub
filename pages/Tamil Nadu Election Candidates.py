@@ -855,20 +855,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             with tab2:
                 category_wise(selected_parties, dataset7_cleaned)
     
-    with st.expander("click me to use the Assistant 🤖"):
-    
-        conversation_history = []
-    
-        # Set OpenAI API key
-        os.environ["OPENAI_API_KEY"] = "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"
-    
-        # Load DataFramerom Excel file
-        path = r"C:\Users\user\AppData\Local\Programs\Python\Python311\Detailed Results.xlsx"
-        try:
-            df = pd.read_excel(path)
-        except Exception as e:
-            st.error(f"Error loading Excel file: {e}")
-    
+   
     
     
        
