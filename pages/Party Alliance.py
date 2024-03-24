@@ -1,7 +1,9 @@
 from requests import get
 import pandas as pd
 import openpyxl
-
+import matplotlib.pyplot as plt
+import gradio as gr
+import tempfile
 import os
 import webbrowser
 import streamlit as st
@@ -17,10 +19,10 @@ st.set_page_config(
 )
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 
-url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats%20(4)%20(4).xlsx"
+url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (3).xlsx"
 # Local file names to store the downloaded Excel files
 
-file_2 = "PoliticalParties_ContestedSeats%20(4)%20(4).xlsx"
+file_2 = "PoliticalParties_ContestedSeats (4) (4).xlsx"
 
 file_1 = "Electors%20Data2.xlsx"
 
@@ -241,37 +243,37 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
 
    
     if button1:
-      
+    
         st.markdown("<h1 style='color: darkorange;'> Secular Progressive Alliance TN 2021</h1>", unsafe_allow_html=True)
         st.caption("""The Secular Progressive Alliance, led by the Dravida Munnetra Kazhagam (DMK),
-                             emerged as a formidable force in the election. Comprising the DMK, Congress,
-                             Communist Party of India (Marxist), Communist Party of India, Viduthalai Chiruthaigal Katchi,
-                             and Indian Union Muslim League, this alliance focused on secularism, social justice,
-                             and inclusive development as its core agenda.""")
+                            emerged as a formidable force in the election. Comprising the DMK, Congress,
+                            Communist Party of India (Marxist), Communist Party of India, Viduthalai Chiruthaigal Katchi,
+                            and Indian Union Muslim League, this alliance focused on secularism, social justice,
+                            and inclusive development as its core agenda.""")
         st.write("""To access detailed information about the Secular Progressive Alliance and its constituent parties,
-                         kindly navigate to the respective tabs. The "Secular Progressive Alliance" tab will provide an overview
-                         of the alliance's agenda and objectives, while individual tabs for each party within the alliance offer
-                         insights into their contributions to the alliance's collective vision. Happy exploring!""")
+                        kindly navigate to the respective tabs. The "Secular Progressive Alliance" tab will provide an overview
+                        of the alliance's agenda and objectives, while individual tabs for each party within the alliance offer
+                        insights into their contributions to the alliance's collective vision. Happy exploring!""")
         # Define tabs
         tab1, tab2, tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12,tab13,tab14,tab15= st.tabs(["Secular Progressive Alliance TN 2021","DMK contestment", "INC contestment", "CPI contestment","CPI(M) contestment","VCK contestment","MDMK contestment","MMUK contestment","IUML contestment","KMDK contestment","MMK contestment","AIFB contestment","TVK contestment","MVK contestment","ATP contestment"])
         
         with tab1:
-           Secular_Progressive_Alliance()
+            Secular_Progressive_Alliance()
         with tab2:
-          parties_cons('DMK','DMK (Contestment TN 2021')
-    
+            parties_cons('DMK','DMK (Contestment TN 2021')
+
         with tab3:
-           parties_cons('INC','INC Contestment TN 2021')
+            parties_cons('INC','INC Contestment TN 2021')
         with tab4:
             parties_cons('CPI','CPI  Contestment TN 2021')
         with tab5:
-             parties_cons('CPI(M)','CPI(M) ( Contestment TN 2021')
+            parties_cons('CPI(M)','CPI(M) ( Contestment TN 2021')
         with tab6:
             parties_cons('VCK','VCK  Contestment TN 2021')
         with tab7:
-             parties_cons('MDMK','MDMK  Contestment TN 2021')
+            parties_cons('MDMK','MDMK  Contestment TN 2021')
         with tab8:
-             parties_cons('MMUK','MMUK  Contestment TN 2021')
+            parties_cons('MMUK','MMUK  Contestment TN 2021')
         with tab9:
             parties_cons('IUML','IUML  Contestment TN 2021')
         with tab10:
@@ -283,23 +285,23 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         with tab13:
                 parties_cons('TVK','TVK Contestment TN 2021')
         with tab14:
-                 parties_cons('MVK','MVK  Contestment TN 2021')
+                parties_cons('MVK','MVK  Contestment TN 2021')
         with tab15:
-               parties_cons('ATP','ATP  Contestment TN 2021')
-    
+            parties_cons('ATP','ATP  Contestment TN 2021')
+
     def parties1_cons(party,party_name):
-                total_constituencies_data = dataset1_cleaned.loc['NO. OF CONSTITUENCIES']
-    
-                # Create a new DataFrame with the extracted data
-                total_constituencies_table = pd.DataFrame({'Category': total_constituencies_data.index, 'Total_Constituencies': total_constituencies_data.values})
-                total_constituencies_table_name = 'Total_Constituencies(2021)'
-                total_constituencies_sum = total_constituencies_data.sum()
-                party_constest = dataset2_cleaned.loc[party]['CONTESTED']
-                df=pd.DataFrame({"Party":['Total Constituence TN Election 2021',party],"seats":[total_constituencies_sum,party_constest]})
-                st.write(f"Seat Distribution of {party}")
-                st.write(df)
-                fig=px.bar(df,x="seats",y="Party",title=party_name)
-                st.write(fig)
+            total_constituencies_data = dataset1_cleaned.loc['NO. OF CONSTITUENCIES']
+
+            # Create a new DataFrame with the extracted data
+            total_constituencies_table = pd.DataFrame({'Category': total_constituencies_data.index, 'Total_Constituencies': total_constituencies_data.values})
+            total_constituencies_table_name = 'Total_Constituencies(2021)'
+            total_constituencies_sum = total_constituencies_data.sum()
+            party_constest = dataset2_cleaned.loc[party]['CONTESTED']
+            df=pd.DataFrame({"Party":['Total Constituence TN Election 2021',party],"seats":[total_constituencies_sum,party_constest]})
+            st.write(f"Seat Distribution of {party}")
+            st.write(df)
+            fig=px.bar(df,x="seats",y="Party",title=party_name)
+            st.write(fig)
     def National_Democratic_Alliance():
         
         
@@ -327,37 +329,37 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         st.dataframe(trans,width=1000)
         fig = px.pie(Total_nda_allince_parties ,values='Contested seats', names='NDAparties',title='National Democratic Alliance (2021)',width=800, height=600)
         st.write(fig)
-   
-
-
-   
     
-# Add button2 logic here
+
+
+    
+        
+    # Add button2 logic here
     if button2:
         st.markdown("<h1 style='color: teal;'>National Democratic Alliance</h1>", unsafe_allow_html=True)
         st.caption("""The National Democratic Alliance (NDA) is a centre-right to right-wing conservative
-                                 Indian political alliance led by the right-wing Bharatiya Janata Party (BJP).[2] It was
-                                 founded in 1998 and currently controls the government of India as well as the government
-                                 of 17 Indian states and one Union territory.""")
+                                Indian political alliance led by the right-wing Bharatiya Janata Party (BJP).[2] It was
+                                founded in 1998 and currently controls the government of India as well as the government
+                                of 17 Indian states and one Union territory.""")
         st.caption("""The NDA was formed in May 1998 as a coalition to contest the general elections.
-                                 The main aim of the NDA was to form an anti-Indian National Congress coalition.
-                                 It was led by the BJP, and included several regional parties, including the Samata Party
-                                 and the AIADMK, as well as Shiv Sena, but Shiv Sena broke away from the alliance in
-                                 2019 to join the Maha Vikas Aghadi with Congress and the NCP. Samata Party is also broke
-                                 away from alliance in 2003 after formation of Janta Dal (United). The Shiv Sena was the only
-                                 member which shared the Hindutva ideology of the BJP.[5][6] After the election, it was able
-                                 to muster a slim majority with outside support from the Telugu Desam Party, allowing
-                                 Atal Bihari Vajpayee to return as prime minister.""")
+                                The main aim of the NDA was to form an anti-Indian National Congress coalition.
+                                It was led by the BJP, and included several regional parties, including the Samata Party
+                                and the AIADMK, as well as Shiv Sena, but Shiv Sena broke away from the alliance in
+                                2019 to join the Maha Vikas Aghadi with Congress and the NCP. Samata Party is also broke
+                                away from alliance in 2003 after formation of Janta Dal (United). The Shiv Sena was the only
+                                member which shared the Hindutva ideology of the BJP.[5][6] After the election, it was able
+                                to muster a slim majority with outside support from the Telugu Desam Party, allowing
+                                Atal Bihari Vajpayee to return as prime minister.""")
         st.write("""To access detailed information about the National Democratic Alliance and its constituent parties,
-                         kindly navigate to the respective tabs. The "National Democratic Alliance" tab will provide an overview
-                         of the alliance's agenda and objectives, while individual tabs for each party within the alliance offer
-                         insights into their contributions to the alliance's collective vision. Happy exploring!""")
+                        kindly navigate to the respective tabs. The "National Democratic Alliance" tab will provide an overview
+                        of the alliance's agenda and objectives, while individual tabs for each party within the alliance offer
+                        insights into their contributions to the alliance's collective vision. Happy exploring!""")
         tab1, tab2, tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11=st.tabs(["National Democratic Alliance TN (2021)","ADMK contestment","PMK contestment","BJP contestment","TMC contestment",
-             "PTMK contestment","TMMK contestment","MMUK contestment","AIMMK contestment","PBK contestment","PDK contestment"])
+            "PTMK contestment","TMMK contestment","MMUK contestment","AIMMK contestment","PBK contestment","PDK contestment"])
         with tab1:
             National_Democratic_Alliance()
         with tab2:
-             parties1_cons('ADMK','ADMK (Contestment TN 2021')
+            parties1_cons('ADMK','ADMK (Contestment TN 2021')
         with tab3:
             parties1_cons('PMK','PMK (Contestment TN 2021')
         with tab4:
@@ -376,14 +378,14 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             parties_cons('PBK','PBK  Contestment TN 2021')
         with tab11:
             parties_cons('PDK','PDK  Contestment TN 2021')
-    
-    
-    
-    
+
+
+
+
     def Non_aligned_parties():
         
                             
-                                  
+                                
         def Non_aligned_parties_contestment(party):
             parties_contest=dataset2_cleaned.loc[party]['CONTESTED']
             return parties_contest
@@ -401,19 +403,19 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         st.dataframe(Total_non_ap_allince_parties ,width=1000)
         fig = px.bar(Total_non_ap_allince_parties ,x='Contested seats', y='NON_APparties',title='  Non-aligned parties TN 2021',width=800, height=600)
         st.write(fig)
-       
     
-    
-    
+
+
+
     if button3:
         st.markdown("<h1 style='color: teal;'> Non-aligned parties TN 2021</h1>", unsafe_allow_html=True)
         st.caption("""Non-aligned parties in 2021 varied from region to region but typically included political
-                             entities that were not affiliated with major political alliances or blocs. These parties often
-                             pursued their own agendas, ideologies, or represented specific regional interests.""")
+                            entities that were not affiliated with major political alliances or blocs. These parties often
+                            pursued their own agendas, ideologies, or represented specific regional interests.""")
         st.write("""To access detailed information about the Non-Aligned Parties and their respective platforms,
-                         kindly navigate to the respective tabs. The "Non-Aligned Parties" tab will provide an overview
-                         of these parties' agendas and objectives. Individual tabs for each party within this category offer
-                         insights into their history, ideology, and contributions to the political landscape. Happy exploring!""")
+                        kindly navigate to the respective tabs. The "Non-Aligned Parties" tab will provide an overview
+                        of these parties' agendas and objectives. Individual tabs for each party within this category offer
+                        insights into their history, ideology, and contributions to the political landscape. Happy exploring!""")
         tab1, tab2, tab3,tab4,tab5,tab6=st.tabs(["Non-aligned parties TN 2021","NTK contestment","BSP contestment","PTK contestment","CPI(ML)(L) contestment","SAP contestment"])
         with tab1:
             Non_aligned_parties()
@@ -430,7 +432,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
     def people_fronts():
         
                             
-                                  
+                                
         def people_fronts_parties(party):
             parties_contest=dataset2_cleaned.loc[party]['CONTESTED']
             return parties_contest
@@ -442,12 +444,12 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         non_ap_seats_allince=[ammkkmnkz,dmdk,psdpi,aimim]
         
         Total_non_ap_allince_parties = pd.DataFrame({"party":non_ap_parties, "Contested seats": non_ap_seats_allince})
-    
+
         st.subheader(" Seat Contestment of   Peoples Front  TN  (2021)")
         st.dataframe(Total_non_ap_allince_parties ,width=1000)
         fig = px.pie(Total_non_ap_allince_parties, values='Contested seats', names='party', title='Peoples Front TN (2021)', width=800, height=600)
         st.write(fig)
-       
+    
     if button4:
         st.markdown("<h1 style='color: teal;'> Peoples Front  TN  (2021)</h1>", unsafe_allow_html=True)
         
@@ -462,12 +464,12 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             parties_cons('SDPI','SDPI  Contestment TN 2021')
         with tab5:
             parties_cons('AIMIM','AIMIM ( Contestment TN 2021')
-    
-    
+
+
     def people_alliance():
         
                             
-                                  
+                                
         def people_alliance_first(party):
             parties_contest=dataset2_cleaned.loc[party]['CONTESTED']
             return parties_contest
@@ -482,12 +484,12 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         non_ap_seats_allince=[(mnm,ijk,aismk,tmjk,jdmk,jds,kmi)]
         
         Total_non_ap_allince_parties = pd.DataFrame({"party": non_ap_parties, "Contested seats": [mnm, ijk, aismk, tmjk, jdmk, jds, kmi]})
-    
+
         st.subheader(" Seat Contestment of   Peoples Front  TN  (2021)")
         st.dataframe(Total_non_ap_allince_parties ,width=1000)
         fig = px.pie(Total_non_ap_allince_parties, values='Contested seats', names='party', title='Peoples First Alliance TN (2021)', width=800, height=600)
         st.write(fig)
-      
+    
     if button5:
         st.markdown("<h1 style='color: teal;'>  People's First Alliance  TN  (2021)</h1>", unsafe_allow_html=True)
         
@@ -505,81 +507,81 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             parties_cons('TMJK','TMJK ( Contestment TN 2021)')
         with tab6:
             parties_cons('JDMK','JDMK ( Contestment TN 2021')
-           
+        
         with tab7:
             parties_cons('JD(S)','JD(S) ( Contestment TN 2021')
-           
+        
         with tab8:
             parties_cons('KMI','KMI ( Contestment TN 2021')
-           
-           
+        
+        
     def top_contested_parties_21():
-           
+        
             no_of_unique_parties=dataset2_cleaned.index.unique()
             max_seated_party=[]
             max_seated_parties_contested=[]
             for attemp in no_of_unique_parties:
-                 if dataset2_cleaned.loc[attemp]['CONTESTED'] >=150.0 and dataset2_cleaned.loc[attemp]['CONTESTED']<=234.0:
+                if dataset2_cleaned.loc[attemp]['CONTESTED'] >=150.0 and dataset2_cleaned.loc[attemp]['CONTESTED']<=234.0:
                     max_seated_party.append(attemp)
                     contested=dataset2_cleaned.loc[attemp]['CONTESTED']
                     max_seated_parties_contested.append(contested)
-                 
+                
             maximum_no_of_seat_contested_parties=pd.DataFrame({"parties":max_seated_party,"no_of_seats_contested":max_seated_parties_contested})
-    
+
             st.subheader("TOP CONTESTED PARTIES TN 2021")
             st.dataframe(maximum_no_of_seat_contested_parties,width=1000)
             fig = px.pie( maximum_no_of_seat_contested_parties ,values='no_of_seats_contested', names='parties',title='"TOP CONTESTED PARTIES TN 2021"',width=800, height=600)
             st.write(fig)
             
-           
-    
+        
+
     if button6:
-         st.markdown("<h1 style='color: teal;'>TOP CONTESTED PARTIES TAMILNADU ELECTION  2021</h1>", unsafe_allow_html=True)
-             
-         st.caption("""The pie chart provides a clear snapshot of the electoral landscape, illustrating the relative
-                                 strength and distribution of contested seats among the top political contenders. Through this
-                                 visualization, one can discern the diversity of ideologies and the competitive spirit that characterized
-                                 the Tamil Nadu elections in 2021.""")
-         st.write("""To access detailed information about the Top Contested Parties in the 2021 election,
-                         kindly navigate to the respective tabs. The "Top Contested Parties 2021" tab will provide
-                         an overview of these parties' performance and significance in the election. Individual tabs
-                         for each party within this category offer insights into their campaign strategies, popular support,
-                         and key electoral issues. Happy exploring!""")
+        st.markdown("<h1 style='color: teal;'>TOP CONTESTED PARTIES TAMILNADU ELECTION  2021</h1>", unsafe_allow_html=True)
+            
+        st.caption("""The pie chart provides a clear snapshot of the electoral landscape, illustrating the relative
+                                strength and distribution of contested seats among the top political contenders. Through this
+                                visualization, one can discern the diversity of ideologies and the competitive spirit that characterized
+                                the Tamil Nadu elections in 2021.""")
+        st.write("""To access detailed information about the Top Contested Parties in the 2021 election,
+                        kindly navigate to the respective tabs. The "Top Contested Parties 2021" tab will provide
+                        an overview of these parties' performance and significance in the election. Individual tabs
+                        for each party within this category offer insights into their campaign strategies, popular support,
+                        and key electoral issues. Happy exploring!""")
 
 
 
 
 
 
-         tab1, tab2, tab3,tab4,tab5,tab6,tab7=st.tabs(["TOP CONTESTED PARTIES TAMILNADU 2021","NTK contestment","ADMK contestment","DMK contestment","MNM contestment","AMMKMNKZ contestment","BSP contestment"])
-         with tab1:
-              top_contested_parties_21()  
-         with tab2:
+        tab1, tab2, tab3,tab4,tab5,tab6,tab7=st.tabs(["TOP CONTESTED PARTIES TAMILNADU 2021","NTK contestment","ADMK contestment","DMK contestment","MNM contestment","AMMKMNKZ contestment","BSP contestment"])
+        with tab1:
+            top_contested_parties_21()  
+        with tab2:
             parties_cons('NTK','NTK (Contestment TN 2021')
-         with tab3:
+        with tab3:
             parties_cons('ADMK','ADMK  Contestment TN 2021')
-         with tab4:
+        with tab4:
             parties_cons('DMK','DMK  Contestment TN 2021')
-         with tab5:
+        with tab5:
             parties_cons('MNM','MNM  Contestment TN 2021')
-         with tab6:
+        with tab6:
             parties_cons('AMMKMNKZ','AMMKMNKZ  Contestment TN 2021')
-         with tab7:
+        with tab7:
             parties_cons('BSP','BSP  Contestment TN 2021')
-    
-    
+
+
     def max_contested_parties_21():
             no_of_unique_parties=dataset2_cleaned.index.unique()
             max_seated_party=[]
             max_seated_parties_contested=[]
             for attemp in no_of_unique_parties:
-                 if dataset2_cleaned.loc[attemp]['CONTESTED'] >=25.0 and dataset2_cleaned.loc[attemp]['CONTESTED']<=234.0:
+                if dataset2_cleaned.loc[attemp]['CONTESTED'] >=25.0 and dataset2_cleaned.loc[attemp]['CONTESTED']<=234.0:
                     max_seated_party.append(attemp)
                     contested=dataset2_cleaned.loc[attemp]['CONTESTED']
                     max_seated_parties_contested.append(contested)
-                 
+                
             maximum_no_of_seat_contested_parties=pd.DataFrame({"parties":max_seated_party,"no_of_seats_contested":max_seated_parties_contested})
-    
+
             st.subheader(" Maximum no.of Seats Distribution Among Parties(2021)")
             st.dataframe(maximum_no_of_seat_contested_parties,width=1000)
             st.subheader("Exploring Maximum  Contested Parties in Tamil Nadu Election 2021")
@@ -590,25 +592,25 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
                                     preferences of Tamil Nadu's electorate. This diversity underscores the richness of democracy in the
                                     state, where multiple voices converge to shape the course of governance. As we delve into the data,
                                     we gain valuable insights into the complex socio-political fabric of Tamil Nadu.""")
-    
-    
+
+
             fig = px.pie(maximum_no_of_seat_contested_parties ,values='no_of_seats_contested', names='parties',title='MAXIMUM  NO . OF CONTESTED PARTIES  TAMILNADU ELECTION 2021',width=800, height=600)
             st.write(fig)
             
     if button7:
         st.markdown("<h1 style='color: teal;'>MAXIMUM CONTESTED PARTIES  TAMILNADU ELECTION 2021</h1>", unsafe_allow_html=True)
         st.caption("""The Tamil Nadu State Assembly elections of 2021 marked a significant chapter in the state's political history, characterized by
-                                 a plethora of contested parties vying for electoral success. With a diverse array of political ideologies and aspirations, the electoral
-                                 battleground witnessed the participation of major players like the DMK and AIADMK, alongside the burgeoning influence of parties such as the BJP and MNM.""")
+                                a plethora of contested parties vying for electoral success. With a diverse array of political ideologies and aspirations, the electoral
+                                battleground witnessed the participation of major players like the DMK and AIADMK, alongside the burgeoning influence of parties such as the BJP and MNM.""")
         st.write("""To access detailed information about the Maximum Contested Parties in the 2021 election,
-                         kindly navigate to the respective tabs. The "Maximum Contested Parties 2021" tab will provide an
-                         overview of these parties' involvement and influence in the election. Individual tabs for each party
-                         within this category offer insights into their campaign dynamics, electoral strategies, and impact on
-                         the political landscape. Happy exploring!""")
-    
+                        kindly navigate to the respective tabs. The "Maximum Contested Parties 2021" tab will provide an
+                        overview of these parties' involvement and influence in the election. Individual tabs for each party
+                        within this category offer insights into their campaign dynamics, electoral strategies, and impact on
+                        the political landscape. Happy exploring!""")
+
         tab1, tab2, tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12,tab13,tab14,tab15,tab16=st.tabs(["MAXIMUM  NO . OF CONTESTED PARTIES  TAMILNADU ELECTION 2021","NTK contestment","ADMK contestment","DMK contestment","MNM contestment","AMMKMNKZ contestment","BSP contestment","DMDK contestment","MIDP contestment","IJK contestment","PT contestment","TNLK contestment","VTVTK contestment","AMPK contestment","INC contestment","APTADMK contestment"])
         with tab1:
-           max_contested_parties_21()
+            max_contested_parties_21()
         with tab2:
             parties_cons('NTK','NTK (Contestment TN 2021')
         with tab3:
@@ -622,7 +624,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         with tab7:
             parties_cons('BSP','BSP  Contestment TN 2021')
         with tab8:
-             parties_cons('DMDK','DMDK  Contestment TN 2021')
+            parties_cons('DMDK','DMDK  Contestment TN 2021')
         with tab9:
             parties_cons('MIDP','MIDP  Contestment TN 2021')
         with tab10:
@@ -639,6 +641,6 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
             parties_cons('INC','INC Contestment TN 2021')
         with tab16:
             parties_cons('APTADMK','APTADMK  Contestment TN 2021')
-    
-    
-                 
+
+
+                
