@@ -23,7 +23,11 @@ with left_column:
     st.image("homepicture (3).png")
     import streamlit as st
 
-st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
+
+    
+# Right column (About and Contact)
+with right_column:
+    st.caption("""Our objective is to provide comprehensive analysis and insights into various aspects of elections.
                 We cover topics such as:""")
 
 st.info(" - Election Nomination Insights")
@@ -33,13 +37,12 @@ st.info(" - Candidates Details")
 st.info(" - Electoral Results")
 st.info(" - AI Chat Facility")
 
-
-st.title("Happy Exploring!...") 
-    
-# Right column (About and Contact)
-with right_column:
+with st.cols(2):
+    st.title("Happy Exploring!...") 
     st.image("homepicture2.png")
+    
+with st.cols(1):
     st.header("📝About")
     st.write("""
-    This Election Data Analysis, your hub for election insights. Explore voter turnout, party alliances, Candidates Details,Elction Result and nomination trends. Meet our AI assistant for personalized assistance and deeper insights. Ask questions, get clarifications, and navigate election dynamics effortlessly!.  """)
-    
+        This Election Data Analysis, your hub for election insights. Explore voter turnout, party alliances, Candidates Details,Elction Result and nomination trends. Meet our AI assist
+        ant for personalized assistance and deeper insights. Ask questions, get clarifications, and navigate election dynamics effortlessly!.  """)
