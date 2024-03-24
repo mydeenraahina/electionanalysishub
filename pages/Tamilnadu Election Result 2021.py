@@ -6,7 +6,7 @@ import webbrowser
 import streamlit as st
 import plotly.express as px
 import time
-from streamlit_extras.tags import tagger_component
+
 st.set_page_config(
     page_title="Election Analytics Hub!",
     page_icon="📊",
