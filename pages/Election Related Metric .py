@@ -228,8 +228,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         button1 = st.button("Click to View", key="button1", type="primary")
         st.markdown("🎯 Total Votes Casted Tamilnadu 2021", unsafe_allow_html=True)
         button2 = st.button("Click to View", key="button2", type="primary")
-        st.markdown("🎯 Voters Turnout Over 234 constituency  Tamilnadu 2021", unsafe_allow_html=True)
-        button3= st.button("Click to View", key="button3", type="primary")
+       
         st.markdown("🎯 Examining Poll Percentage Trends TN 2021", unsafe_allow_html=True)
         button4 = st.button("Click to View", key="button4", type="primary")
 
