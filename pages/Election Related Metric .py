@@ -22,7 +22,7 @@ st.set_page_config(
 
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 
-url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%20Detailed%20Results%20(1).xlsx"
+url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%2520Detailed%2520Results%2520(1).xlsx"
 
 file_1 = "Electors%20Data2.xlsx"
 
@@ -751,4 +751,3 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
 
     
         
-
