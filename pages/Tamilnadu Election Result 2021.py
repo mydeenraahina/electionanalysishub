@@ -47,7 +47,7 @@ st.info("""This  allows you to explore 🗒️ "Election Recap: Comprehensive An
 
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
 url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4).xlsx"
-url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%20Detailed%20Results%20(1).xlsx"
+url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%2520Detailed%2520Results%2520(1).xlsx"
 # Local file names to store the downloaded Excel files
 file_1 = "Electors%20Data2.xlsx"
 file_2 = "PoliticalParties_ContestedSeats (4).xlsx"
@@ -470,66 +470,5 @@ with st.expander("📝Click Me to See Over All Report🏛️"):
                             labels={"party": "Party", "votes secured": "Votes Secured"},
                             color_discrete_map={'Winner': 'green', 'First Runner-up': 'blue'})
                 st.plotly_chart(fig)
-from pandasai import SmartDatalake
-from pandasai.llm import OpenAI
-import os
-with st.expander("click me to use the Assistant 🤖"):
-
-    conversation_history = []
-
-    # Set OpenAI API key
-    os.environ["OPENAI_API_KEY"] = "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"
-
-    # Load DataFramerom Excel file
-    path1 = r"C:\Users\user\AppData\Local\Programs\Python\Python311\Detailed Results.xlsx"
-    path2=r"C:\Users\user\AppData\Local\Programs\Python\Python311\Performance of Political Partiesfor chat.xlsx"
-    try:
-        df1 = pd.read_excel(path1)
-        df2=pd.read_excel(path2)
-    except Exception as e:
-        st.error(f"Error loading Excel file: {e}")
-
-
-
-   # Set app title with custom styling
-    st.markdown("<h1 style='text-align: center; color: #ff0066;'>Custom ChatBot</h1>", unsafe_allow_html=True)
-    button_style = """
-    <style>
-    .stButton>button {
-        border: none !important;
-        background-color: #ff0066; /* Tomato */
-        color: #FFFFFF !important; /* White */
-        border-radius: 20px !important; /* Adjust the value to change the roundness */
-        padding: 8px 16px !important; /* Adjust the padding to fit the content */
-        font-size: 14px !important; /* Adjust the font size */
-    }
-    </style>
-    """
-   
-    # User input area
-    query = st.text_input("Message Chatbot:")
-    buttonchat=st.button("submit",key="primary")
-    if buttonchat:
-    # Process user query
-        if query:
-
-            try:
-                st.error(f" 👨‍💼You: {query} ")
-                # Initialize OpenAI model
-                llm = OpenAI(api_token=os.environ["OPENAI_API_KEY"])
-                
-                # Initialize SmartDataFrame
-                query_engine = SmartDatalake([df1, df2], config={"llm": llm})
-                
-                # Get answer to user query
-                answer = query_engine.chat(query)
-                # Display question and answer in separate columns
-            
-                st.success(f"🤖 Bot: {answer}")
-            except Exception as e:
-                st.error(f"Error processing query: {e}")
-
-
-
 
 
