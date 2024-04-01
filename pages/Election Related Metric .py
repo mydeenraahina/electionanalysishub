@@ -26,7 +26,7 @@ url3= "https://github.com/mydeenraahina/data_set/raw/main/10-%2520Detailed%2520R
 
 file_1 = "Electors%20Data2.xlsx"
 
-file_3="10-%20Detailed%20Results%20(1).xlsx"
+file_3="10-%2520Detailed%2520Results%2520(1).xlsx"
 
 class Read_Data():
     # Setting display options for Pandas
