@@ -6,6 +6,7 @@ from pandasai import SmartDatalake
 from requests import get
 import openpyxl
 import webbrowser
+from pandasai.responses.response_parser import ResponseParser
 st.set_page_config(
     page_title="Election Analytics Hub!",
     page_icon="📊",
@@ -75,12 +76,7 @@ class Streamlitresponse(ResponseParser):
     def format_other(self, result):
         st.write(result["value"])
 
-st.set_page_config(
-    page_title="Election Analytics Hub!",
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+
 
 st.image("chatbot.gif")
 st.title("Here is your AI Assistant!")
