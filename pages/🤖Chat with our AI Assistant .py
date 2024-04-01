@@ -15,7 +15,7 @@ st.set_page_config(
    
 )
 # Set OpenAI API key
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 pd.options.display.max_rows = 300
 pd.options.display.max_columns = 8
