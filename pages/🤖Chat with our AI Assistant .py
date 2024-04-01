@@ -24,13 +24,13 @@ pd.options.display.max_columns = 8
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Detailed%20Results.xlsx"
 ur12="https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
 url3="https://github.com/mydeenraahina/data_set/raw/main/Performance of Political Partiesfor chatbot.xlsx"
-
+url4="https://github.com/mydeenraahina/data_set/raw/main/Candidates%2520Data%2520Summarychart.xlsx"
 
 
 file_1 = "Detailed%20Results.xlsx"
 file_2 = "Electors Data Summary chardata.xlsx"
 file_3 = "Performance of Political Partiesfor chatbot.xlsx"
-
+file_4="Candidates%2520Data%2520Summarychart.xlsx"
 class Read_Data():
     # Setting display options for Pandas
     pd.options.display.max_rows = 150
@@ -59,6 +59,7 @@ class Read_Data():
 dataset0 = Read_Data.Read_Excel(url1,file_1)
 dataset1 = Read_Data.Read_Excel(ur12,file_2)
 dataset2 = Read_Data.Read_Excel(url3,file_3)
+dataset3=Read_Data.Read_Excel(url4,file_4)
 
 class Streamlitresponse(ResponseParser):
     def __init__(self, context):
@@ -88,17 +89,19 @@ query = st.text_area("Enter your query:")
 # Initialize OpenAI LLM and SmartDatalake
 llm = OpenAI(api_token=os.environ["OPENAI_API_KEY"])
 
-df1 = pd.DataFrame(dataset0)
+df1 = pd.DataFrame(dataset0).dropna()
 
 
-df2 = pd.DataFrame(dataset1)
+df2 = pd.DataFrame(dataset1).dropna()
 
 
-df3 = pd.DataFrame(dataset2)
+df3 = pd.DataFrame(dataset2).dropna()
+
+df4=pd.DataFrame(dataset3).dropna()
 
 
 # Initialize SmartDatalake
-dl = SmartDatalake([df1, df2, df3], config={"llm": llm, "response_parser": Streamlitresponse})
+dl = SmartDatalake([df1, df2, df3,df4], config={"llm": llm, "response_parser": Streamlitresponse})
 
 # Chatbot interaction
 if st.button("Submit", key="primary", help="Submit query"):
