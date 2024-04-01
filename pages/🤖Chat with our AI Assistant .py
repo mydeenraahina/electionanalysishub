@@ -19,7 +19,7 @@ os.environ["OPENAI_API_KEY"] = "sk-G1b6SlUJjlHFFtuRQ6vqT3BlbkFJJzW5uLYxpFJYHXMlB
 pd.options.display.max_rows = 300
 pd.options.display.max_columns = 8
 
-# Display the time using Streamlit
+
 # URLs for the Excel files
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Detailed%20Results.xlsx"
 ur12="https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
@@ -60,14 +60,26 @@ dataset0 = Read_Data.Read_Excel(url1,file_1)
 dataset1 = Read_Data.Read_Excel(ur12,file_2)
 dataset2 = Read_Data.Read_Excel(url3,file_3)
 
-dataset0.dropna(inplace=True)
-df1=pd.DataFrame(dataset0)
+class Streamlitresponse(ResponseParser):
+    def __init__(self, context):
+        super().__init__(context)
 
-dataset1.dropna(inplace=True)
-df2=pd.DataFrame(dataset1)
+    def format_dataframe(self, result):
+        st.dataframe(result["value"])
 
-dataset2.dropna(inplace=True)
-df3=pd.DataFrame(dataset2)
+    def format_plot(self, result):
+        st.write("AI Assistant:")
+        st.image(result["value"],width=700)
+
+    def format_other(self, result):
+        st.write(result["value"])
+
+st.set_page_config(
+    page_title="Election Analytics Hub!",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 st.image("chatbot.gif")
 st.title("Here is your AI Assistant!")
@@ -75,13 +87,24 @@ query = st.text_area("Enter your query:")
 
 # Initialize OpenAI LLM and SmartDatalake
 llm = OpenAI(api_token=os.environ["OPENAI_API_KEY"])
-dl = SmartDatalake([df1,df2,df3], config={"llm": llm})
+
+df1 = pd.DataFrame(dataset0)
+
+
+df2 = pd.DataFrame(dataset1)
+
+
+df3 = pd.DataFrame(dataset2)
+
+
+# Initialize SmartDatalake
+dl = SmartDatalake([df1, df2, df3], config={"llm": llm, "response_parser": Streamlitresponse})
 
 # Chatbot interaction
 if st.button("Submit", key="primary", help="Submit query"):
     result = dl.chat(query)
-    st.write("User(you): " + query)
-    st.write("AI Assistant: " + result)
+    st.write("User(you): ", query)
+    st.write(result)
 
 # Apply CSS to the button for styling
 st.markdown(
