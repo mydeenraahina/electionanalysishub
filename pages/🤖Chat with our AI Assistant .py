@@ -21,13 +21,13 @@ pd.options.display.max_columns = 8
 
 
 # URLs for the Excel files
-url1 = "https://github.com/mydeenraahina/data_set/raw/main/Detailed%20Results.xlsx"
+url1 = "https://github.com/mydeenraahina/data_set/raw/main/10-%2520Detailed%2520Results%2520(1).xlsx"
 ur12="https://github.com/mydeenraahina/data_set/raw/main/Electors Data Summary chardata.xlsx"
 url3="https://github.com/mydeenraahina/data_set/raw/main/Performance of Political Partiesfor chatbot.xlsx"
 url4="https://github.com/mydeenraahina/data_set/raw/main/Candidates%2520Data%2520Summarychart.xlsx"
 
 
-file_1 = "Detailed%20Results.xlsx"
+file_1 = "10-%2520Detailed%2520Results%2520(1).xlsx"
 file_2 = "Electors Data Summary chardata.xlsx"
 file_3 = "Performance of Political Partiesfor chatbot.xlsx"
 file_4="Candidates%2520Data%2520Summarychart.xlsx"
