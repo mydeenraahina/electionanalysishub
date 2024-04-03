@@ -16,14 +16,12 @@ st.set_page_config(
    
 )
 url1 = "https://github.com/mydeenraahina/data_set/raw/main/Electors%20Data2.xlsx"
-
-url2 = "https://github.com/mydeenraahina/data_set/raw/main/PoliticalParties_ContestedSeats (4) (3).xlsx"
+url2="
 # Local file names to store the downloaded Excel files
 
-file_2 = "PoliticalParties_ContestedSeats (4) (4).xlsx"
 
 file_1 = "Electors%20Data2.xlsx"
-
+file_2="
 class Read_Data():
     # Setting display options for Pandas
     pd.options.display.max_rows = 150
@@ -49,7 +47,8 @@ class Read_Data():
             return dataset
 # Dataset 1: Electors Data Summary
 dataset1 = Read_Data.Read_Excel(url1,file_1)
-dataset2 = Read_Data.Read_Excel(url2,file_2)
+
+dataset2 = pd.read_excel(url2,file_2)
 class Clean_Dataset1:
 
     def removing_empty_val(self, dataset):
@@ -169,6 +168,7 @@ def Secular_Progressive_Alliance():
 
 st.markdown("<h1 style='color: #ff0066' ;> Party Alliance Taminadu Election 2021!</h1>", unsafe_allow_html=True)
 st.write("Explore detailed insights in Party Alliance Taminadu Election 2021!")
+st.write("""The Secular Progressive Alliance, led by the DMK, prioritized secularism and social justice, strategically distributing seats among its members for maximum impact. The National Democratic Alliance, spearheaded by the BJP, presented a conservative platform through parties like the ADMK, aiming to leverage seat allocation for electoral success. Independent parties pursued diverse agendas outside major alliances, reflecting regional interests and ideologies. The Peoples Front TN 2021, comprising various parties, strategically contested to address a wide range of electoral issues. Lastly, the People's First Alliance, uniting several parties, aimed to present a cohesive platform for addressing state concerns.""")
 col1,col2=st.columns(2)
 with col1:
     st.title(" Get Started!")
@@ -223,7 +223,8 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
     with col2:
         st.markdown("🎯 PEOPLES FRONT TN 2021", unsafe_allow_html=True)
         button4 = st.button("Click to View", key="button4", type="primary")    
-        
+          
+
         st.markdown("🎯 TOP CONTESTED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
         button6 = st.button("Click to View", key="button6", type="primary")    
 
@@ -448,7 +449,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
     
     if button4:
         st.markdown("<h1 style='color: teal;'> Peoples Front  TN  (2021)</h1>", unsafe_allow_html=True)
-        
+        st.write(""""Peoples Front TN (2021)" showcases the collaborative effort of various political parties in Tamil Nadu for the 2021 elections. This alliance represents a convergence of ideologies and agendas aimed at addressing the diverse needs and aspirations of the electorate. With parties like AMMK, MNK, and Z coming together under this front, it reflects a strategic coalition to consolidate support and amplify their impact on the electoral landscape. The inclusion of parties like DMDK, SDPI, and AIMIM further underscores the diversity and inclusivity of this coalition, catering to a wide spectrum of voters across the state. Together, these parties aim to offer a compelling vision and platform for governance, advocating for the welfare and progress of the people of Tamil Nadu.""")
         tab1, tab2, tab3,tab4,tab5=st.tabs(["People front parties TN 2021"," AMMKMNKZ contestment","DMDK contestment","SDPI contestment","AIMIM contestment"])
         with tab1:
             people_fronts()
@@ -486,43 +487,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         fig = px.pie(Total_non_ap_allince_parties, values='Contested seats', names='party', title='Peoples First Alliance TN (2021)', width=800, height=600)
         st.write(fig)
     
-    if button5:
-        
-    if button6:
-        st.markdown("<h1 style='color: teal;'>TOP CONTESTED PARTIES TAMILNADU ELECTION  2021</h1>", unsafe_allow_html=True)
-            
-        st.caption("""The pie chart provides a clear snapshot of the electoral landscape, illustrating the relative
-                                strength and distribution of contested seats among the top political contenders. Through this
-                                visualization, one can discern the diversity of ideologies and the competitive spirit that characterized
-                                the Tamil Nadu elections in 2021.""")
-        st.write("""To access detailed information about the Top Contested Parties in the 2021 election,
-                        kindly navigate to the respective tabs. The "Top Contested Parties 2021" tab will provide
-                        an overview of these parties' performance and significance in the election. Individual tabs
-                        for each party within this category offer insights into their campaign strategies, popular support,
-                        and key electoral issues. Happy exploring!""")
-
-
-
-
-
-
-        tab1, tab2, tab3,tab4,tab5,tab6,tab7=st.tabs(["TOP CONTESTED PARTIES TAMILNADU 2021","NTK contestment","ADMK contestment","DMK contestment","MNM contestment","AMMKMNKZ contestment","BSP contestment"])
-        with tab1:
-            top_contested_parties_21()  
-        with tab2:
-            parties_cons('NTK','NTK (Contestment TN 2021')
-        with tab3:
-            parties_cons('ADMK','ADMK  Contestment TN 2021')
-        with tab4:
-            parties_cons('DMK','DMK  Contestment TN 2021')
-        with tab5:
-            parties_cons('MNM','MNM  Contestment TN 2021')
-        with tab6:
-            parties_cons('AMMKMNKZ','AMMKMNKZ  Contestment TN 2021')
-        with tab7:
-            parties_cons('BSP','BSP  Contestment TN 2021')
-
-
+    
     def max_contested_parties_21():
             no_of_unique_parties=dataset2_cleaned.index.unique()
             max_seated_party=[]
