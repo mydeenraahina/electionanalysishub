@@ -223,9 +223,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
     with col2:
         st.markdown("🎯 PEOPLES FRONT TN 2021", unsafe_allow_html=True)
         button4 = st.button("Click to View", key="button4", type="primary")    
-        st.markdown("🎯  People's First Alliance TAMILNADU ELECTION 2021", unsafe_allow_html=True)
-        button5 = st.button("Click to View", key="button5", type="primary")    
-
+        
         st.markdown("🎯 TOP CONTESTED PARTIES TAMILNADU ELECTION 2021", unsafe_allow_html=True)
         button6 = st.button("Click to View", key="button6", type="primary")    
 
@@ -489,50 +487,7 @@ with st.expander("🔍 Explore different aspects of the Tamil Nadu 2021 📈 ele
         st.write(fig)
     
     if button5:
-        st.markdown("<h1 style='color: teal;'>  People's First Alliance  TN  (2021)</h1>", unsafe_allow_html=True)
         
-        non_ap_parties=["MNM","IJK","AISMK","TMJK","JDMK","JD(S)","KMI"]
-        tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["People front parties TN 2021", "MNM contestment", "IJK contestment", "AISMK contestment", "TMJK contestment", "JDMK contestment", "JD(S) contestment", "KMI contestment"])
-        with tab1:
-            people_alliance()
-        with tab2:
-            parties_cons('MNM','MNM (Contestment TN 2021')
-        with tab3:
-            parties_cons('IJK','IJK Contestment TN 2021')
-        with tab4:
-            parties_cons('AISMK','AISMK  Contestment TN 2021')
-        with tab5:
-            parties_cons('TMJK','TMJK ( Contestment TN 2021)')
-        with tab6:
-            parties_cons('JDMK','JDMK ( Contestment TN 2021')
-        
-        with tab7:
-            parties_cons('JD(S)','JD(S) ( Contestment TN 2021')
-        
-        with tab8:
-            parties_cons('KMI','KMI ( Contestment TN 2021')
-        
-        
-    def top_contested_parties_21():
-        
-            no_of_unique_parties=dataset2_cleaned.index.unique()
-            max_seated_party=[]
-            max_seated_parties_contested=[]
-            for attemp in no_of_unique_parties:
-                if dataset2_cleaned.loc[attemp]['CONTESTED'] >=150.0 and dataset2_cleaned.loc[attemp]['CONTESTED']<=234.0:
-                    max_seated_party.append(attemp)
-                    contested=dataset2_cleaned.loc[attemp]['CONTESTED']
-                    max_seated_parties_contested.append(contested)
-                
-            maximum_no_of_seat_contested_parties=pd.DataFrame({"parties":max_seated_party,"no_of_seats_contested":max_seated_parties_contested})
-
-            st.subheader("TOP CONTESTED PARTIES TN 2021")
-            st.dataframe(maximum_no_of_seat_contested_parties,width=1000)
-            fig = px.pie( maximum_no_of_seat_contested_parties ,values='no_of_seats_contested', names='parties',title='"TOP CONTESTED PARTIES TN 2021"',width=800, height=600)
-            st.write(fig)
-            
-        
-
     if button6:
         st.markdown("<h1 style='color: teal;'>TOP CONTESTED PARTIES TAMILNADU ELECTION  2021</h1>", unsafe_allow_html=True)
             
